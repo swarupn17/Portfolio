@@ -1,28 +1,26 @@
 const navLinks = document.querySelectorAll(".navbar a");
 const sections = document.querySelectorAll("section");
+const resumeLink = "https://drive.google.com/file/d/1V9fDE_8WiaVvOb3l6brUXosUmB4vme4L/view?usp=sharing"; // Resume link
 
 function setActiveLink() {
-  const scrollPosition = window.scrollY; // Get current scroll position
+  const scrollPosition = window.scrollY;
 
   sections.forEach((section) => {
-    const sectionTop = section.offsetTop; // Get the top position of the section
-    const sectionHeight = section.clientHeight; // Get the height of the section
+    const sectionTop = section.offsetTop;
+    const sectionHeight = section.clientHeight;
 
-    // Check if the scroll position is within the section
+    // Check if scroll position is within the section bounds
     if (
       scrollPosition >= sectionTop - sectionHeight / 2 &&
       scrollPosition < sectionTop + sectionHeight / 2
     ) {
-      // Remove active class from all links except the resume link
       navLinks.forEach((link) => {
-        if (link.getAttribute("href") !== "https://drive.google.com/file/d/1rGRryYW9wzwvECSJSDzbu5hXEUnOuSSa/view?usp=sharing") {
+        if (link.getAttribute("href") !== resumeLink) {
           link.classList.remove("active");
         }
       });
-      // Add active class to the corresponding link
-      const activeLink = document.querySelector(
-        `.navbar a[href="${section.id}"]`
-      );
+
+      const activeLink = document.querySelector(`.navbar a[href="#${section.id}"]`);
       if (activeLink) {
         activeLink.classList.add("active");
       }
@@ -30,21 +28,15 @@ function setActiveLink() {
   });
 }
 
-// Listen for scroll events
-window.addEventListener("scroll", setActiveLink);
-
-// Smooth scroll event handler
+// Apply smooth scroll effect to "Projects" and "Contact" only
 navLinks.forEach((link) => {
-  link.addEventListener("click", function (e) {
-    const resumeLink = "https://drive.google.com/file/d/1rGRryYW9wzwvECSJSDzbu5hXEUnOuSSa/view?usp=sharing"; // Update this with the actual link to your resume
-
-    if (this.getAttribute("href") === resumeLink) {
-      // If the clicked link is the resume link, open it directly
-      window.open(resumeLink, "_blank");
-    } else {
+  const href = link.getAttribute("href");
+  
+  // Check for "Projects" and "Contact" sections, exclude resume link
+  if (href !== resumeLink && (href === "#projects" || href === "#contact")) {
+    link.addEventListener("click", function (e) {
       e.preventDefault();
-      const targetId = this.getAttribute("href");
-      const targetSection = document.querySelector(targetId);
+      const targetSection = document.querySelector(href);
 
       const navbarHeight = document.querySelector(".navbar").offsetHeight;
       const targetPosition =
@@ -54,44 +46,61 @@ navLinks.forEach((link) => {
         top: targetPosition,
         behavior: "smooth",
       });
-    }
-  });
+    });
+  }
 });
 
-// Your existing handleSubmit function remains unchanged
-async function handleSubmit(event) {
-  event.preventDefault(); // Prevent the default form submission
+// Directly open resume link in new tab
+document.querySelector(`.navbar a[href="${resumeLink}"]`).addEventListener("click", function (e) {
+  e.preventDefault();
+  window.open(resumeLink, "_blank");
+});
 
-  const form = event.target; // Get the form
+// Contact form submission handler
+async function handleSubmit(event) {
+  event.preventDefault();
+
+  const form = event.target;
   const submitButton = document.getElementById("submitButton");
   const buttonText = document.getElementById("buttonText");
   const buttonSpinner = document.getElementById("buttonSpinner");
 
-  // Show loading spinner
-  buttonText.style.display = "none"; // Hide button text
-  buttonSpinner.classList.remove("hidden"); // Show spinner
+  buttonText.style.display = "none";
+  buttonSpinner.classList.remove("hidden");
 
   try {
-    // Send the form data to Formspree
     const response = await fetch(form.action, {
       method: "POST",
       body: new FormData(form),
-      headers: {
-        Accept: "application/json", // Accept JSON response
-      },
+      headers: { Accept: "application/json" },
     });
 
+    const message = document.createElement("div");
+    message.className = "message";
     if (response.ok) {
-      alert("Email sent successfully!"); // Success message
-      form.reset(); // Reset the form fields
+      message.textContent = "Message sent successfully!";
+      message.classList.add("success");
+      form.reset();
     } else {
-      alert("Error sending email. Please try again."); // Error message
+      message.textContent = "Error sending message. Please try again.";
+      message.classList.add("error");
     }
+    document.body.appendChild(message);
+
+    setTimeout(() => {
+      document.body.removeChild(message);
+    }, 3000);
   } catch (error) {
-    alert("Error sending email: " + error.message); // Error handling
+    const errorMessage = document.createElement("div");
+    errorMessage.className = "message error";
+    errorMessage.textContent = "Error sending message: " + error.message;
+    document.body.appendChild(errorMessage);
+
+    setTimeout(() => {
+      document.body.removeChild(errorMessage);
+    }, 3000);
   } finally {
-    // Hide loading spinner
-    buttonText.style.display = "inline"; // Show button text
-    buttonSpinner.classList.add("hidden"); // Hide spinner
+    buttonText.style.display = "inline";
+    buttonSpinner.classList.add("hidden");
   }
 }
