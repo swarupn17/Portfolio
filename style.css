@@ -1,0 +1,486 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  position: fixed;
+  top: 0; /* Fixes navbar to the top */
+  background-color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  height: 80px;
+  padding: 5px;
+  width: 100vw;
+  max-width: 100%;
+  z-index: 10;
+  left: 0;
+}
+
+@keyframes wave-animation {
+  0% { transform: rotate(0deg); }
+  10% { transform: rotate(14deg); }
+  20% { transform: rotate(-8deg); }
+  30% { transform: rotate(14deg); }
+  40% { transform: rotate(-4deg); }
+  50% { transform: rotate(10deg); }
+  60% { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.wave {
+  animation-duration: 2.1s;
+  animation-iteration-count: infinite;
+  animation-name: wave-animation;
+  display: inline-block;
+  transform-origin: 70% 70%;
+}
+
+.navbar img {
+  height: 80px;
+  padding-top: 10px;
+  z-index: 0;
+}
+
+.navbar a {
+  background-color: white;
+  text-decoration: none;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  padding: 15px;
+  text-align: center;
+  color: grey;
+  border-radius: 20px;
+  word-spacing: 5px;
+  letter-spacing: 2px;
+  transition: background-color 0.3s, transform 0.3s;
+  font-size: 20px;
+}
+
+.navbar a:hover {
+  background-color: black;
+  color: white;
+  transform: scale(1.05);
+}
+.navbar a.active {
+  border-bottom: 2px solid blue; /* Underline effect */
+  padding-bottom: 13px; /* Adjust padding to accommodate the border */
+}
+
+.image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  width: 400px;
+  border: 20px solid #d3d3d3;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-left: 510px;
+  margin-top: 110px; /* Added space to offset navbar height */
+  transition: border-color 0.3s;
+}
+
+.image:hover {
+  border-color: whitesmoke;
+}
+
+.image img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+}
+
+.intro {
+  display: flex;
+  justify-content: center;
+  margin-left: 40px;
+  font-size: 50px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  margin-bottom: 0%;
+  margin-top: 10px;
+}
+
+.intro-2 {
+  display: flex;
+  justify-content: center;
+  font-size: 20px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.marquee {
+  overflow: hidden; /* Hides the overflow */
+  white-space: nowrap; /* Prevents text wrapping */
+  width: 100%; /* Full width */
+  background-color: whitesmoke; /* Set background color */
+  padding: 10px 0px; /* Optional: adds vertical padding */
+  margin-bottom: 20px;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  margin-top: 100px;
+}
+
+.marquee-content {
+  display: flex; /* Makes the content inline */
+  animation: marquee 10s linear infinite; /* Adjust duration as needed */
+}
+
+.marquee-content ul {
+  display: flex; /* Makes the list horizontal */
+  padding: 0; /* Removes default padding */
+  margin: 0; /* Removes default margin */
+  list-style-type: none; /* Removes bullet points */
+}
+
+.marquee-content li {
+  font-size: 2em; /* Makes the font bigger */
+  margin: 0 20px; /* Even space between each li */
+}
+
+@keyframes marquee {
+  from {
+      transform: translateX(0); /* Start from the initial position */
+  }
+  to {
+      transform: translateX(-50%); /* Move left by half of the content's width */
+  }
+}
+
+/* SKILLS */
+#skills {
+  text-align: center;
+  padding: 30px;
+  background-color: #ffffff;
+}
+
+#skills h2 {
+  font-size: 2em;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.skill-category {
+  margin-top: 30px;
+}
+
+.skill-category h3 {
+  font-size: 1.2em;
+  color: #555;
+  margin-bottom: 15px;
+  text-align: left;
+  border-bottom: 2px solid #ddd;
+  display: inline-block;
+}
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.skill-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100px;
+}
+
+.skill-item img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain; /* Ensures logos are contained within specified width and height */
+  margin-bottom: 10px;
+}
+
+.skill-item span {
+  font-size: 0.9em;
+  color: #333;
+}
+
+.course {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: whitesmoke;
+}
+
+#skills h1 {
+  display: inline-block; /* Allows the background to fit tightly around the text */
+  background-color: whitesmoke; /* Background color for the heading */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect for the heading */
+  border-radius: 10px; /* Rounds the corners of the heading */
+  padding: 10px; /* Padding around the heading */
+  margin: 0; /* Remove default margin */
+  font-size: 40px; /* Font size */
+  margin-top: 20px;
+}
+
+/* About Me Section */
+/*
+#about-me {
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  height: 300px;
+}
+
+.about-me {
+  display: inline-block;
+  flex-direction: column; 
+  justify-content: center;
+  align-items: center; 
+  text-align: center; 
+  border-radius: 10px; 
+  margin-bottom: 30px;
+  background-color: whitesmoke; 
+  padding-top: 20px;
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-bottom: 30px;
+}
+
+#about-me h2 {
+  margin-bottom: 30px;
+}
+
+#about-me h3 {
+  text-align: left;
+}
+*/
+
+.projects {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  /* Removed background-color here, as it will be set to the heading */
+}
+
+.project-heading {
+  background-color: whitesmoke; /* Background color for the heading */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect for the heading */
+  border-radius: 10px; /* Optional: rounds the corners of the heading */
+  padding: 10px; /* Padding around the heading */
+  margin: 0; /* Remove default margin */
+  font-size: 40px;
+}
+
+#projects {
+  background-color: white; /* Background color for the project section */
+  padding: 20px; /* Padding around the section */
+  text-align: center; /* Center-align text within the section */
+}
+
+.Projects {
+  display: flex; /* Use flexbox for layout */
+  justify-content: space-around; /* Space between cards */
+  flex-wrap: wrap; /* Allows wrapping of cards on smaller screens */
+}
+
+.project-card {
+  background-color: white; /* Background color for project cards */
+  border: 1px solid #ccc; /* Border for the card */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+  margin: 10px; /* Margin around each card */
+  width: 400px; /* Fixed width for cards */
+  overflow: hidden; /* Prevent overflow of content */
+  transition: transform 0.3s; /* Animation for hover effect */
+  height: 500px;
+  margin-bottom: 50px;
+}
+
+.project-card:hover {
+  transform: scale(1.05); /* Scale effect on hover */
+}
+
+.project-image {
+  width: 100%; /* Full width for the image */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.project-info {
+  padding: 5px; /* Padding inside the card */
+}
+
+.project-info h3 {
+  margin-top: 0%;
+  font-size: 1.5em; /* Title size */
+  margin-bottom: 5px; /* Space below the title */
+}
+
+.project-info p {
+  font-size: 1em; /* Description size */
+  margin-bottom: 25px; /* Space below the description */
+}
+
+.github-link {
+  text-decoration: none; /* Remove underline from the link */
+  color: #fff; /* Link text color */
+  background-color: #007bff;
+  margin-top: 20px;
+  font-size: 15px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  padding: 5px;
+  border-radius: 15px;
+}
+.github-link:hover {
+  background-color:#2563eb;
+}
+.tech-used {
+  display: flex; /* Use flexbox for layout */
+  flex-wrap: wrap; /* Allow wrapping of technology tags */
+  margin-top: 20px; /* Space above tech items */
+  justify-content: center; /* Center the technology tags */
+}
+
+.tech-used span {
+  background-color: whitesmoke; /* Background color for tech items */
+  border: 1px solid black; /* Border for tech items */
+  border-radius: 10px; /* Rounded corners */
+  padding: 5px 10px; /* Padding for tech items */
+  margin: 5px; /* Space around each tech item */
+  font-size: 0.9em; /* Font size for tech items */
+}
+
+/* Contacts */
+
+.contact {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  /* Removed background-color here, as it will be set to the heading */
+}
+
+.contact-heading {
+  background-color: whitesmoke; /* Background color for the heading */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect for the heading */
+  border-radius: 10px; /* Optional: rounds the corners of the heading */
+  padding: 10px; /* Padding around the heading */
+  margin: 0; /* Remove default margin */
+  font-size: 40px;
+}
+.socials {
+  display: flex;                      /* Use flexbox for alignment */
+  justify-content: center;           /* Center the items horizontally */
+  align-items: center;               /* Center the items vertically */
+}
+
+.socials a {
+  height: 30px;                      /* Set height of the anchor */
+  width: 30px;                       /* Set width of the anchor */
+  margin: 0 15px;                   /* Add horizontal margin of 15px on both sides */
+}
+
+.socials img {
+  height: 100%;                      /* Set image height to fill the anchor */
+  width: 100%;                       /* Set image width to fill the anchor */
+  object-fit: contain;               /* Maintain aspect ratio of images */
+}
+
+/* General Form Styling */
+#contactForm {
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top: 30px;
+  background-color: #f9fafb;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Input Styling */
+.form-group {
+  margin-bottom: 1.5rem;
+  margin-right: 25px;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 1rem;
+  color: #374151;
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+  border-color: #3b82f6;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+/* Textarea Styling */
+.textarea-container textarea {
+  resize: vertical;
+  min-height: 150px;
+}
+
+/* Button Styling */
+#submitButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #3b82f6;
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border: none;
+  margin-left: 200px;
+}
+
+#submitButton:hover {
+  background-color: #2563eb;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  #contactForm {
+    padding: 1.5rem;
+  }
+  #submitButton {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+.spinner {
+  border: 2px solid transparent;
+  border-top: 2px solid white; /* Spinner color */
+  border-radius: 50%;
+  width: 1em;
+  height: 1em;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.spinner.hidden {
+  display: none;
+}
+
