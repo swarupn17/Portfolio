@@ -70,6 +70,13 @@
   padding-bottom: 13px; /* Adjust padding to accommodate the border */
 }
 
+.image-container {
+  display: flex;
+  justify-content: center; /* Centers the image horizontally */
+  align-items: flex-start; /* Aligns items to the top */
+  padding-top: 110px; /* Offset for navbar height */
+}
+
 .image {
   display: flex;
   justify-content: center;
@@ -79,8 +86,7 @@
   border: 20px solid #d3d3d3;
   border-radius: 50%;
   overflow: hidden;
-  margin-left: 510px;
-  margin-top: 110px; /* Added space to offset navbar height */
+  margin: 0 auto; /* Centers the image container */
   transition: border-color 0.3s;
 }
 
@@ -91,7 +97,7 @@
 .image img {
   max-height: 100%;
   max-width: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .intro {
