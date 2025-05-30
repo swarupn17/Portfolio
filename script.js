@@ -1,6 +1,6 @@
 const navLinks = document.querySelectorAll(".navbar a");
 const sections = document.querySelectorAll("section");
-const resumeLink = "https://drive.google.com/file/d/1lfsZ1IJuhQrEWAki0thlPuOM9wKvgIsk/view?usp=sharing"; // Resume link
+const resumeLink = "https://drive.google.com/file/d/18Kka_LcgKeeX2pTF9le3hW56_OhBRDuF/view?usp=sharing"; // Resume link
 
 function setActiveLink() {
   const scrollPosition = window.scrollY;
